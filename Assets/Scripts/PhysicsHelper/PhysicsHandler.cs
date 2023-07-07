@@ -12,6 +12,17 @@ public class PhysicsHandler : MonoBehaviour
     Collider2D c2D;
 
     private Vector3 velocity;
+    public Vector3 Velocity
+    {
+        get
+        {
+            return GetVelocity();
+        }
+        set
+        {
+            SetVelocity(value);
+        }
+    }
 
     public Action<CollisionData> CollisionEnter, CollisionStay, CollisionExit;
     public Action<ColliderData> TriggerEnter, TriggerStay, TriggerExit;

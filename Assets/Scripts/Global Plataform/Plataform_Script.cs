@@ -30,6 +30,9 @@ public class Plataform_Script : MonoBehaviour
     float terminalVelocity;
 
     //Movement parameters
+    [SerializeField] float speed;
+
+    //Movement parameters
     Vector3 finalVelocity;
     float maxSlopeAngle;
 
@@ -43,34 +46,11 @@ public class Plataform_Script : MonoBehaviour
 
         CalculateParameters();
     }
-    public float testValue;
     void CalculateParameters()
     {
         //the amount of physics tick per second
         float ticksPerSecond = (1f / Time.fixedDeltaTime)-1;
-        //print(ticksPerSecond);
-
-        //offset of missing ticks when calculating gravity
-        //at.25: 1.22197525
-        //at .5: 1.10093
-        //at  1: 1,040522
-        //at  2: 1.022412
-        //at  3: 1.0007525
-        //at  4: 0,99633825
-       //dif.25: 0.12104
-        //dif.5: 0.060408
-        //dif 1: 0.0216595
-        //diff roughly 0.03/time
-        float tickOffset = ticksPerSecond * Time.fixedDeltaTime * (testValue);
-        //Debug.Log(tickOffset);
-        //.2== 21
-        //.25==18
-        //.5== 10
-        //.75==6
-        //1 == 4
-        //2 == 1
-        //3 == 0
-        //4 == -.5
+        float tickOffset = ticksPerSecond * Time.fixedDeltaTime;
 
         //basic speed formula plus the extra force needed to compensate for the gravity force
         jumpSpeed = (jumpHeight / timeToMaxHeight);
@@ -125,9 +105,12 @@ public class Plataform_Script : MonoBehaviour
                     //print($"Start Height:{transform.position.y}");
                     //StartCoroutine(TestCount());
                     input.y = 0;
-                    physicsHandler.SetVelocity(finalVelocity);
                 }
             }
+
+            finalVelocity.x = input.x * speed;
+
+            physicsHandler.Velocity = finalVelocity;
         }
 
         Gravity();
@@ -143,7 +126,7 @@ public class Plataform_Script : MonoBehaviour
     {
         if (onGround) return;
 
-        Vector2 gravityEffect = physicsHandler.GetVelocity();
+        Vector2 gravityEffect = physicsHandler.Velocity;
 
         if (gravityEffect.y >= 0) currentGravity = jumpGravity;
         else currentGravity = fallGravity;
@@ -151,12 +134,13 @@ public class Plataform_Script : MonoBehaviour
         //if (gravityEffect.y > -terminalVelocity)
             gravityEffect.y -= currentGravity;
 
-        physicsHandler.SetVelocity(gravityEffect);
+        finalVelocity = gravityEffect;
 
-        if(checkStopTime)
+        //tests
+        if (checkStopTime)
         {
             stopTime += Time.fixedDeltaTime;
-            speedLost += jumpSpeed - physicsHandler.GetVelocity().y;
+            speedLost += jumpSpeed - physicsHandler.Velocity.y;
         }
 
         if (gravityEffect.y <= 0)
@@ -164,7 +148,7 @@ public class Plataform_Script : MonoBehaviour
             if (checkStopTime)
             {
                 checkStopTime = false;
-                print($"stop time: {stopTime} | height: {transform.position.y-t_initialHeight}");
+                //print($"stop time: {stopTime} | height: {transform.position.y-t_initialHeight}");
                 //print($"Initial speed: {jumpSpeed} | total speed lost: {speedLost}");
                 //float ticksPerSecond = (1f / Time.fixedDeltaTime) - 1;
                 //print($"Percentage lost: {ExtraForceWithDrag(jumpSpeed, jumpGravity, ticksPerSecond-1, timeToMaxHeight):0.0000}");
@@ -192,9 +176,7 @@ public class Plataform_Script : MonoBehaviour
         {
             standingFloor = data.collider.gameObject;
             onGround = true;
-
-            //test only
-            t_initialHeight = transform.position.y;
+            state = input.x == 0 ? State.idle : State.walking;
         }
     }
     void CollisionExit(CollisionData data)
