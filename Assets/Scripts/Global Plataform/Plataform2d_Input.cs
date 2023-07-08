@@ -7,6 +7,7 @@ public class Plataform2d_Input : MonoBehaviour
     [SerializeField] Plataform_Script plataform;
     [SerializeField] Plataform_Preset normal, gliding;
     [SerializeField] float cashedInputDuration;
+    public bool isGliding = false;
     float currentTime;
     Vector3 cashedInput;
     Vector3 baseScale;
@@ -45,6 +46,7 @@ public class Plataform2d_Input : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
         {
             plataform.preset = normal;
+            isGliding = true;
         }
 
         plataform.input.x = Input.GetAxis("Horizontal");
@@ -58,11 +60,13 @@ public class Plataform2d_Input : MonoBehaviour
     void Glide()
     {
         plataform.preset = gliding;
+        isGliding = true;
     }
 
     void OnTouchGround()
     {
         plataform.preset = normal;
+        isGliding = false;
         plataform.input = cashedInput;
     }
 }

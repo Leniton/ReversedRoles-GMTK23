@@ -32,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4035302495388945827}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -82,9 +82,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 070b88f0552b0994292ba549d5ab19a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
@@ -125,6 +125,7 @@ MonoBehaviour:
   healthManager: {fileID: 3087330800822199639}
   barraDePoder: {fileID: 11400000, guid: 946213ca57e440e4f8ee5380d2e96a58, type: 2}
   plataform_Script: {fileID: 7529952562131388750}
+  plataformInput: {fileID: 7983162611904295544}
   animator: {fileID: 6590643542647682828}
 --- !u!114 &7983162611904295544
 MonoBehaviour:
@@ -142,6 +143,7 @@ MonoBehaviour:
   normal: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
   gliding: {fileID: 11400000, guid: e1ef6cf15ae23694487c28ed81ac03fe, type: 2}
   cashedInputDuration: 0.5
+  isGliding: 0
 --- !u!114 &7529952562131388750
 MonoBehaviour:
   m_ObjectHideFlags: 0

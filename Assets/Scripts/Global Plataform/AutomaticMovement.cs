@@ -5,14 +5,19 @@ using UnityEngine;
 public class AutomaticMovement : MonoBehaviour
 {
     [SerializeField] Plataform_Script plataform;
+    [SerializeField] HealthManager healthManager;
+    [SerializeField] Animator animator;
     [SerializeField] bool moving = false;
     [SerializeField] float maxEdgeDistance = 1;
     ColliderData plataformData;
+    Vector3 baseScale;
+    int damageHash = Animator.StringToHash("Damaged");
 
     void Awake()
     {
         if (plataform) plataform.GetComponent<Plataform_Script>();
         plataform.input.x = moving ? 1 : 0;
+        baseScale = transform.localScale;
 
         plataform.physicsHandler.CollisionEnter += CheckPlataformBounds;
         plataform.physicsHandler.CollisionExit += RemovePlataformData;
@@ -40,6 +45,12 @@ public class AutomaticMovement : MonoBehaviour
         {
             plataform.input.x = 0;
         }
+
+        Vector3 finalScale = baseScale;
+        finalScale.x = baseScale.x * Mathf.Sign(plataform.input.x);
+        transform.localScale = finalScale;
+
+        animator.SetBool(damageHash, healthManager.invincible);
     }
 
     void CheckPlataformBounds(CollisionData data)
