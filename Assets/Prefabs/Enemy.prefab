@@ -37,7 +37,7 @@ Transform:
   - {fileID: 4870696410265217075}
   - {fileID: 7975451327456164731}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7034083067539490529
 MonoBehaviour:
@@ -54,7 +54,7 @@ MonoBehaviour:
   plataform: {fileID: 6814329457919470175}
   healthManager: {fileID: 2225641505999183587}
   animator: {fileID: 6876928418467601391}
-  moving: 0
+  moving: 1
   maxEdgeDistance: 1.5
 --- !u!114 &2225641505999183587
 MonoBehaviour:

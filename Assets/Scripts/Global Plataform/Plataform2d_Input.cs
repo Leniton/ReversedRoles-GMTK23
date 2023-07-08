@@ -9,7 +9,7 @@ public class Plataform2d_Input : MonoBehaviour
     [SerializeField] float cashedInputDuration;
     public bool isGliding = false;
     float currentTime;
-    Vector3 cashedInput;
+    Vector3 cashedInput = Vector3.zero;
     Vector3 baseScale;
 
     void Awake()
@@ -46,7 +46,7 @@ public class Plataform2d_Input : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
         {
             plataform.preset = normal;
-            isGliding = true;
+            isGliding = false;
         }
 
         plataform.input.x = Input.GetAxis("Horizontal");
