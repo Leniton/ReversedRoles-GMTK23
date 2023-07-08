@@ -25,11 +25,8 @@ public class Plataform2d_Input : MonoBehaviour
         currentTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
-            if (plataform.OnGround)
-            {
-                plataform.preset = normal;
-                plataform.input.y = 1;
-            }
+            plataform.preset = normal;
+            plataform.input.y = 1;
             cashedInput.y = 1;
             currentTime = 0;
         }
@@ -40,7 +37,7 @@ public class Plataform2d_Input : MonoBehaviour
             cashedInput.y = 0;
         }
 
-        if (plataform.physicsHandler.Velocity.y < 0 && cashedInput.y > 0)
+        if (plataform.physicsHandler.Velocity.y < 0 && cashedInput.y > 0 && !plataform.canJump)
         {
             Glide();
         }

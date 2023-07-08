@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class Plataform_Script : MonoBehaviour
     public Vector3 input = Vector3.zero;
     public bool hasControl = true;
     [SerializeField] bool onGround;
+    public bool canJump { get; private set; }
     public bool OnGround
     {
         get
@@ -31,6 +33,7 @@ public class Plataform_Script : MonoBehaviour
 
     //Jump parameters
     public Plataform_Preset preset;
+    [SerializeField]float coyoteTime = 0;
     float currentGravity;
 
     //Movement parameters
@@ -62,13 +65,9 @@ public class Plataform_Script : MonoBehaviour
         {
             if(input.y > 0)
             {
-                if (onGround)
+                if (onGround || canJump)
                 {
-                    checkStopTime = true;
-                    stopTime = 0;
                     Jump();
-                    //print($"Start Height:{transform.position.y}");
-                    //StartCoroutine(TestCount());
                     input.y = 0;
                 }
             }
@@ -81,12 +80,6 @@ public class Plataform_Script : MonoBehaviour
         Gravity();
     }
 
-    float t_initialHeight;
-
-    //test parameters
-    bool checkStopTime;
-    float stopTime;
-    float speedLost = 0;
     void Gravity()
     {
         if (onGround) return;
@@ -100,27 +93,6 @@ public class Plataform_Script : MonoBehaviour
         gravityEffect.y = Mathf.Clamp(gravityEffect.y - currentGravity, -preset.terminalVelocity, 9999999999);
 
         finalVelocity = gravityEffect;
-
-        //tests
-        if (checkStopTime)
-        {
-            stopTime += Time.fixedDeltaTime;
-            speedLost += preset.jumpSpeed - physicsHandler.Velocity.y;
-        }
-
-        if (gravityEffect.y <= 0)
-        {
-            if (checkStopTime)
-            {
-                checkStopTime = false;
-                //print($"stop time: {stopTime} | height: {transform.position.y-t_initialHeight}");
-                //print($"Initial speed: {jumpSpeed} | total speed lost: {speedLost}");
-                //float ticksPerSecond = (1f / Time.fixedDeltaTime) - 1;
-                //print($"Percentage lost: {ExtraForceWithDrag(jumpSpeed, jumpGravity, ticksPerSecond-1, timeToMaxHeight):0.0000}");
-                stopTime = 0;
-                speedLost = 0;
-            }
-        }
 
         if (gravityEffect.y < 0)
         {
@@ -155,7 +127,15 @@ public class Plataform_Script : MonoBehaviour
         {
             standingFloor = null;
             onGround = false;
+            StartCoroutine(CoyoteTime());
         }
+    }
+
+    IEnumerator CoyoteTime()
+    {
+        canJump = true;
+        if (coyoteTime > 0) yield return new WaitForSeconds(coyoteTime);
+        canJump = false;
     }
 
     #region Enable/Disable
