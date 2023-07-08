@@ -490,10 +490,7 @@ MonoBehaviour:
   input: {x: 0, y: 0, z: 0}
   hasControl: 1
   onGround: 0
-  jumpHeight: 2
-  timeToMaxHeight: 0.6
-  timeToFall: 0.2
-  speed: 5
+  preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
 --- !u!212 &1518247961
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -21,16 +21,8 @@ public class Plataform_Script : MonoBehaviour
     GameObject standingFloor;
 
     //Jump parameters
-    [SerializeField] float jumpHeight; //the height the jump will reach
-    [SerializeField, Min(.2f)] float timeToMaxHeight; //the time it will take to reach max height
-    [SerializeField, Min(.2f)] float timeToFall; //the time it will take to get to the ground from max jump height
-    float jumpSpeed;
-    float fallGravity,jumpGravity;
+    [SerializeField] Plataform_Preset preset;
     float currentGravity;
-    float terminalVelocity;
-
-    //Movement parameters
-    [SerializeField] float speed;
 
     //Movement parameters
     Vector3 finalVelocity;
@@ -44,43 +36,7 @@ public class Plataform_Script : MonoBehaviour
         physicsHandler.CollisionEnter = CollisionEnter;
         physicsHandler.CollisionExit = CollisionExit;
 
-        CalculateParameters();
-    }
-    void CalculateParameters()
-    {
-        //the amount of physics tick per second
-        float ticksPerSecond = (1f / Time.fixedDeltaTime)-1;
-        float tickOffset = ticksPerSecond * Time.fixedDeltaTime;
-
-        //basic speed formula plus the extra force needed to compensate for the gravity force
-        jumpSpeed = (jumpHeight / timeToMaxHeight);
-        jumpSpeed *= 1f + ExtraForceWithDrag(jumpSpeed, (jumpSpeed / (ticksPerSecond * timeToMaxHeight)),
-            ticksPerSecond - tickOffset, timeToMaxHeight);
-
-        //gravity calculations. jump and fall gravity are different
-        jumpGravity = (jumpSpeed / (ticksPerSecond * timeToMaxHeight));
-        fallGravity = (jumpSpeed / (ticksPerSecond * timeToFall));
-
-        currentGravity = jumpGravity;
-
-        //print($"jump: {jumpSpeed}");
-        //print($"gravity: {gravity}");
-    }
-
-    /// <summary>
-    /// Calculates the percentage of force needed to compensate some dictated drag force
-    /// </summary>
-    /// <param name="speed">the speed you want to calculate the compensation</param>
-    /// <param name="dragForce">the force slowing down the speed</param>
-    /// <param name="ticksPerSecond">the amount of ticks the drag is added per second</param>
-    /// <param name="totalTime">the amount of time the calculation is taking into account</param>
-    /// <returns></returns>
-    float ExtraForceWithDrag(float speed, float dragForce, float ticksPerSecond,float totalTime)
-    {
-        float dragPercentage = dragForce / speed;
-        dragPercentage *= (ticksPerSecond * totalTime);
-
-        return dragPercentage;
+        preset.CalculateParameters();
     }
 
     void FixedUpdate()
@@ -89,7 +45,7 @@ public class Plataform_Script : MonoBehaviour
 #if UNITY_EDITOR
         if (testMode)
         {
-            CalculateParameters();
+            preset. CalculateParameters();
         }
 #endif
 
@@ -108,7 +64,7 @@ public class Plataform_Script : MonoBehaviour
                 }
             }
 
-            finalVelocity.x = input.x * speed;
+            finalVelocity.x = input.x * preset.speed;
 
             physicsHandler.Velocity = finalVelocity;
         }
@@ -128,8 +84,8 @@ public class Plataform_Script : MonoBehaviour
 
         Vector2 gravityEffect = physicsHandler.Velocity;
 
-        if (gravityEffect.y >= 0) currentGravity = jumpGravity;
-        else currentGravity = fallGravity;
+        if (gravityEffect.y >= 0) currentGravity = preset.jumpGravity;
+        else currentGravity = preset.fallGravity;
 
         //if (gravityEffect.y > -terminalVelocity)
             gravityEffect.y -= currentGravity;
@@ -140,7 +96,7 @@ public class Plataform_Script : MonoBehaviour
         if (checkStopTime)
         {
             stopTime += Time.fixedDeltaTime;
-            speedLost += jumpSpeed - physicsHandler.Velocity.y;
+            speedLost += preset.jumpSpeed - physicsHandler.Velocity.y;
         }
 
         if (gravityEffect.y <= 0)
@@ -166,7 +122,7 @@ public class Plataform_Script : MonoBehaviour
 
     void Jump()
     {
-        finalVelocity.y = jumpSpeed;
+        finalVelocity.y = preset.jumpSpeed;
     }
 
     void CollisionEnter(CollisionData data)
