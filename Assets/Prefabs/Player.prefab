@@ -123,6 +123,7 @@ MonoBehaviour:
   golpe: {fileID: 1611872535558272376}
   tiro: {fileID: 5380935598171916804}
   healthManager: {fileID: 3087330800822199639}
+  barraDePoder: {fileID: 11400000, guid: 946213ca57e440e4f8ee5380d2e96a58, type: 2}
   plataform_Script: {fileID: 7529952562131388750}
   animator: {fileID: 6590643542647682828}
 --- !u!114 &7983162611904295544
@@ -158,9 +159,10 @@ MonoBehaviour:
   input: {x: 0, y: 0, z: 0}
   hasControl: 1
   onGround: 0
-  physicsHandler: {fileID: 0}
+  physicsHandler: {fileID: 1649957546909174843}
   preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
   coyoteTime: 0.2
+  maxSlopeAngle: 45
 --- !u!114 &1649957546909174843
 MonoBehaviour:
   m_ObjectHideFlags: 0

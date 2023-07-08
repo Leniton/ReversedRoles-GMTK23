@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="newHealth",menuName ="Health")]
 public class HealthSystem : ScriptableObject
 {
-    public Health healthReference;
+    public Health reference;
 }
 
 [Serializable]
@@ -13,7 +13,7 @@ public struct Health
     [SerializeField] int MaxHealth;
     [SerializeField] private int health;
 
-    public int healthValue
+    public int Value
     {
         get
         {
@@ -27,7 +27,7 @@ public struct Health
     }
 
     public Action onChange;
-    public void Damage(int value) => healthValue -= value;
-    public void Heal(int value) => healthValue += Mathf.Clamp(value, 0, MaxHealth - healthValue);
-    public void FullHeal() => healthValue = MaxHealth;
+    public void Damage(int value) => Value -= value;
+    public void Heal(int value) => Value += Mathf.Clamp(value, 0, MaxHealth - Value);
+    public void FullHeal() => Value = MaxHealth;
 }

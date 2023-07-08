@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField] Attack golpe, tiro;
     [SerializeField] HealthManager healthManager;
+    [SerializeField] HealthSystem barraDePoder;
     [SerializeField] Plataform_Script plataform_Script;
     [SerializeField] Animator animator;
     int damageHash = Animator.StringToHash("Damaged");
@@ -23,8 +24,9 @@ public class PlayerScript : MonoBehaviour
         {
             golpe.StartAttack();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && barraDePoder.reference.Value > 0)
         {
+            barraDePoder.reference.Damage(1);
             tiro.StartAttack();
         }
 

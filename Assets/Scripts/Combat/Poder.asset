@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fbfb38669e6bb540bc7cecbc7be5e69, type: 3}
-  m_Name: PlayerHealth
+  m_Name: Poder
   m_EditorClassIdentifier: 
   reference:
-    MaxHealth: 3
-    health: 3
+    MaxHealth: 2
+    health: 2
