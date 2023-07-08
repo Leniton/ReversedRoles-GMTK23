@@ -14,7 +14,7 @@ public class Plataform2d_Input : MonoBehaviour
     void Awake()
     {
         if (plataform) plataform.GetComponent<Plataform_Script>();
-        plataform.OnGrounded += ChangePreset;
+        plataform.OnGrounded += OnTouchGround;
         normal.CalculateParameters();
         gliding.CalculateParameters();
         baseScale = transform.localScale;
@@ -22,6 +22,7 @@ public class Plataform2d_Input : MonoBehaviour
 
     void Update()
     {
+        currentTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
             if (plataform.OnGround)
@@ -29,12 +30,9 @@ public class Plataform2d_Input : MonoBehaviour
                 plataform.preset = normal;
                 plataform.input.y = 1;
             }
-            else
-            {
-                cashedInput.y = 1;
-            }
+            cashedInput.y = 1;
+            currentTime = 0;
         }
-        currentTime += Time.deltaTime;
         if (currentTime >= cashedInputDuration)
         {
             currentTime = 0;
@@ -58,11 +56,11 @@ public class Plataform2d_Input : MonoBehaviour
     void Glide()
     {
         plataform.preset = gliding;
-        cashedInput.y = 0;
     }
 
-    void ChangePreset()
+    void OnTouchGround()
     {
         plataform.preset = normal;
+        plataform.input = cashedInput;
     }
 }
