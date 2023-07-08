@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacker: {fileID: 0}
-  damage: 1
+  damage: 2
   AttackObject: {fileID: 7184648130603776801}
   movingSpeed: {x: 10, y: 0}
   duration: 0.4
+  coolDown: 0
   canMultiHit: 0
   parentWhileAttacking: {fileID: 0}
 --- !u!1 &1750003526203411703

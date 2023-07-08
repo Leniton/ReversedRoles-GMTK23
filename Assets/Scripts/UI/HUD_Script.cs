@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-2)]//-2 é para ser antes de aplicar qualquer valor
 public class HUD_Script : MonoBehaviour
 {
     [SerializeField] RectTransform hudHealth;

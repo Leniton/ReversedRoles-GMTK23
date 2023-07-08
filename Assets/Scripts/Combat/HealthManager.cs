@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]//começar o hp cheio
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] HealthSystem healthSystem;
@@ -21,6 +23,24 @@ public class HealthManager : MonoBehaviour
         else healthSystem.reference.onChange += OnHealthChange;
     }
 
+    public void AddListener(Action callback)
+    {
+        if (instanced) _health.onChange += callback;
+        else healthSystem.reference.onChange += callback;
+    }
+
+    public void RemoveListener(Action callback)
+    {
+        if (instanced) _health.onChange -= callback;
+        else healthSystem.reference.onChange -= callback;
+    }
+
+    private void OnDestroy()
+    {
+        if (instanced) _health.onChange -= OnHealthChange;
+        else healthSystem.reference.onChange -= OnHealthChange;
+    }
+
     public void DealDamage(int value)
     {
         if (invincible) return;
@@ -31,6 +51,12 @@ public class HealthManager : MonoBehaviour
             return;
         }
         healthSystem.reference.Damage(value);
+    }
+
+    public void HiddenSet(int value)
+    {
+        if (instanced) _health.HiddenSet(value);
+        else healthSystem.reference.HiddenSet(value);
     }
 
     void OnHealthChange()
