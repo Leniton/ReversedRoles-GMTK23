@@ -160,6 +160,7 @@ MonoBehaviour:
   onGround: 0
   physicsHandler: {fileID: 0}
   preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
+  coyoteTime: 0.2
 --- !u!114 &1649957546909174843
 MonoBehaviour:
   m_ObjectHideFlags: 0

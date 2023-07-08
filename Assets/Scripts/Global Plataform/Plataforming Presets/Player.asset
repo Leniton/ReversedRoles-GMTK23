@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97718e38e7c21e34889d5b39c183fbd7, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  jumpHeight: 2
+  jumpHeight: 2.5
   timeToMaxHeight: 0.6
   timeToFall: 0.3
-  jumpSpeed: 28.314
-  fallGravity: 1.9261223
-  jumpGravity: 0.96306115
-  terminalVelocity: 28.314
+  jumpSpeed: 6.6
+  fallGravity: 0.44897956
+  jumpGravity: 0.22448978
+  terminalVelocity: 97.020004
   speed: 5
