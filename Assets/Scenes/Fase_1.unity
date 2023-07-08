@@ -397,6 +397,7 @@ MonoBehaviour:
   input: {x: 0, y: 0, z: 0}
   hasControl: 1
   onGround: 0
+  physicsHandler: {fileID: 0}
   preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
 --- !u!114 &398394610
 MonoBehaviour:
@@ -411,7 +412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plataform: {fileID: 398394609}
-  physicsHandler: {fileID: 398394608}
   moving: 1
   maxEdgeDistance: 1.5
 --- !u!1 &811993388
@@ -725,8 +725,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849663425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: -1.77, z: 0}
-  m_LocalScale: {x: 19.9632, y: 0.4732, z: 1}
+  m_LocalPosition: {x: 0, y: -1.77, z: 0}
+  m_LocalScale: {x: 20, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -784,6 +784,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plataform: {fileID: 7435452535845742315}
+  normal: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
+  gliding: {fileID: 11400000, guid: e1ef6cf15ae23694487c28ed81ac03fe, type: 2}
+  cashedInputDuration: 0.5
 --- !u!4 &5869413523167547617
 Transform:
   m_ObjectHideFlags: 0
@@ -816,6 +819,7 @@ MonoBehaviour:
   input: {x: 0, y: 0, z: 0}
   hasControl: 1
   onGround: 0
+  physicsHandler: {fileID: 0}
   preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
 --- !u!70 &7841218234983113309
 CapsuleCollider2D:
@@ -862,6 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5869413523167547617}
   - component: {fileID: 8558034789879184205}
+  - component: {fileID: 8558034789879184206}
   - component: {fileID: 5445211120933989792}
   - component: {fileID: 7435452535845742315}
   - component: {fileID: 3663950210410747457}
@@ -926,3 +931,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8558034789879184206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950031156339869078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5003d847316cf9f43ae0b8a448c4228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSystem: {fileID: 11400000, guid: 65e969e8c12ee624c984c1a28104a6ce, type: 2}

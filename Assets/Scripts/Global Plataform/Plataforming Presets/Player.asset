@@ -15,4 +15,8 @@ MonoBehaviour:
   jumpHeight: 2
   timeToMaxHeight: 0.6
   timeToFall: 0.3
+  jumpSpeed: 28.314
+  fallGravity: 1.9261223
+  jumpGravity: 0.96306115
+  terminalVelocity: 28.314
   speed: 5

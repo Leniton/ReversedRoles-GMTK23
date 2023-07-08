@@ -5,7 +5,6 @@ using UnityEngine;
 public class AutomaticMovement : MonoBehaviour
 {
     [SerializeField] Plataform_Script plataform;
-    [SerializeField] PhysicsHandler physicsHandler;
     [SerializeField] bool moving = false;
     [SerializeField] float maxEdgeDistance = 1;
     ColliderData plataformData;
@@ -15,14 +14,14 @@ public class AutomaticMovement : MonoBehaviour
         if (plataform) plataform.GetComponent<Plataform_Script>();
         plataform.input.x = moving ? 1 : 0;
 
-        physicsHandler.CollisionEnter += CheckPlataformBounds;
-        physicsHandler.CollisionExit += RemovePlataformData;
+        plataform.physicsHandler.CollisionEnter += CheckPlataformBounds;
+        plataform.physicsHandler.CollisionExit += RemovePlataformData;
     }
 
     private void OnDestroy()
     {
-        physicsHandler.CollisionEnter -= CheckPlataformBounds;
-        physicsHandler.CollisionExit -= RemovePlataformData;
+        plataform.physicsHandler.CollisionEnter -= CheckPlataformBounds;
+        plataform.physicsHandler.CollisionExit -= RemovePlataformData;
     }
 
     void Update()

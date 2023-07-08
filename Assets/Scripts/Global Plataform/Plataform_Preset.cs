@@ -12,6 +12,7 @@ public class Plataform_Preset : ScriptableObject
     [Min(.2f)] public float timeToFall; //the time it will take to get to the ground from max jump height
     [HideInInspector]public float jumpSpeed;
     [HideInInspector]public float fallGravity, jumpGravity;
+    [HideInInspector] public float terminalVelocity;
 
     //Movement parameters
     public float speed;
@@ -30,6 +31,7 @@ public class Plataform_Preset : ScriptableObject
         //gravity calculations. jump and fall gravity are different
         jumpGravity = (jumpSpeed / (ticksPerSecond * timeToMaxHeight));
         fallGravity = (jumpSpeed / (ticksPerSecond * timeToFall));
+        terminalVelocity = fallGravity * (ticksPerSecond * timeToFall);
 
         //print($"jump: {jumpSpeed}");
         //print($"gravity: {gravity}");

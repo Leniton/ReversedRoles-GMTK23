@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,13 +15,22 @@ public class Plataform_Script : MonoBehaviour
     public Vector3 input = Vector3.zero;
     public bool hasControl = true;
     [SerializeField] bool onGround;
+    public bool OnGround
+    {
+        get
+        {
+            return onGround;
+        }
+        private set { }
+    }
+    public Action OnGrounded;
 
     //Reference Parameters
-    PhysicsHandler physicsHandler;
+    public PhysicsHandler physicsHandler;
     GameObject standingFloor;
 
     //Jump parameters
-    [SerializeField] Plataform_Preset preset;
+    public Plataform_Preset preset;
     float currentGravity;
 
     //Movement parameters
@@ -88,7 +97,7 @@ public class Plataform_Script : MonoBehaviour
         else currentGravity = preset.fallGravity;
 
         //if (gravityEffect.y > -terminalVelocity)
-            gravityEffect.y -= currentGravity;
+        gravityEffect.y = Mathf.Clamp(gravityEffect.y - currentGravity, -preset.terminalVelocity, 9999999999);
 
         finalVelocity = gravityEffect;
 
@@ -133,6 +142,7 @@ public class Plataform_Script : MonoBehaviour
             standingFloor = data.collider.gameObject;
             onGround = true;
             state = input.x == 0 ? State.idle : State.walking;
+            OnGrounded?.Invoke();
         }
     }
     void CollisionExit(CollisionData data)
