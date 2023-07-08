@@ -10,14 +10,14 @@ public class HealthManager : MonoBehaviour
     Health _health;
     public bool invincible{ get; private set; }
 
-    public Health health => instanced ? _health : healthSystem.health;
+    public Health health => instanced ? _health : healthSystem.healthReference;
 
     private void Awake()
     {
-        healthSystem.health.FullHeal();
-        _health = healthSystem.health;
+        healthSystem.healthReference.FullHeal();
+        _health = healthSystem.healthReference;
         if (instanced) _health.onChange += OnHealthChange;
-        else healthSystem.health.onChange += OnHealthChange;
+        else healthSystem.healthReference.onChange += OnHealthChange;
     }
 
     public void DealDamage(int value)
@@ -29,16 +29,16 @@ public class HealthManager : MonoBehaviour
             _health.Damage(value);
             return;
         }
-        healthSystem.health.Damage(value);
+        healthSystem.healthReference.Damage(value);
     }
 
     void OnHealthChange()
     {
-        int currentValue = instanced ? _health.health : healthSystem.health.health;
+        int currentValue = instanced ? _health.healthValue : healthSystem.healthReference.healthValue;
 
         if (currentValue <= 0)
         {
-            Debug.Log("Dead");
+            Debug.Log($"Dead with {currentValue}");
             gameObject.SetActive(false);
         }
     }

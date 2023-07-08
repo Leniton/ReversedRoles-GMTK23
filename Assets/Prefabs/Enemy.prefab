@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 11400000, guid: 65e969e8c12ee624c984c1a28104a6ce, type: 2}
-  instanced: 1
+  instanced: 0
   invencibilityDuration: 0
 --- !u!114 &6814329457919470175
 MonoBehaviour:
@@ -139,6 +139,8 @@ MonoBehaviour:
   onGround: 0
   physicsHandler: {fileID: 0}
   preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
+  coyoteTime: 0
+  maxSlopeAngle: 45
 --- !u!114 &564368649160792924
 MonoBehaviour:
   m_ObjectHideFlags: 0

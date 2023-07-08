@@ -4,30 +4,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="newHealth",menuName ="Health")]
 public class HealthSystem : ScriptableObject
 {
-    public Health health;
+    public Health healthReference;
 }
 
 [Serializable]
 public struct Health
 {
     [SerializeField] int MaxHealth;
-    private int _health;
+    [SerializeField] private int health;
 
-    public int health
+    public int healthValue
     {
         get
         {
-            return _health;
+            return health;
         }
         set
         {
-            _health = value;
+            health = value;
             onChange?.Invoke();
         }
     }
 
     public Action onChange;
-    public void Damage(int value) => health -= value;
-    public void Heal(int value) => health += Mathf.Clamp(value, 0, MaxHealth - health);
-    public void FullHeal() => health = MaxHealth;
+    public void Damage(int value) => healthValue -= value;
+    public void Heal(int value) => healthValue += Mathf.Clamp(value, 0, MaxHealth - healthValue);
+    public void FullHeal() => healthValue = MaxHealth;
 }
