@@ -38,7 +38,7 @@ public class Plataform_Script : MonoBehaviour
 
     //Movement parameters
     Vector3 finalVelocity;
-    float maxSlopeAngle;
+    [SerializeField]float maxSlopeAngle=45;
 
     void Awake()
     {
@@ -111,13 +111,16 @@ public class Plataform_Script : MonoBehaviour
         //print($"collided with {data.collider.gameObject.name}");
         if (data.collider.gameObject.CompareTag("Chão"))
         {
-            standingFloor = data.collider.gameObject;
-            onGround = true;
-            state = input.x == 0 ? State.idle : State.walking;
-            physicsHandler.Velocity = Vector3.zero;
-            finalVelocity = physicsHandler.Velocity;
+            if(Vector3.Angle(data.contacts[0].normal, Vector3.up) <= maxSlopeAngle)
+            {
+                standingFloor = data.collider.gameObject;
+                onGround = true;
+                state = input.x == 0 ? State.idle : State.walking;
+                physicsHandler.Velocity = Vector3.zero;
+                finalVelocity = physicsHandler.Velocity;
 
-            OnGrounded?.Invoke();
+                OnGrounded?.Invoke();
+            }
         }
     }
     void CollisionExit(CollisionData data)
