@@ -23,23 +23,28 @@ public class Plataform2d_Input : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
-        {
-            plataform.preset = normal;
-            plataform.input.y = 1;
-            cashedInput.y = 1;
-            currentTime = 0;
-        }
         if (currentTime >= cashedInputDuration)
         {
             currentTime = 0;
             //cashedInput = Vector3.zero;
             cashedInput.y = 0;
         }
-
-        if (plataform.physicsHandler.Velocity.y < 0 && cashedInput.y > 0 && !plataform.canJump)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
-            Glide();
+            plataform.preset = normal;
+            plataform.input.y = 1;
+            currentTime = 0;
+        }
+        if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+        {
+            if (plataform.physicsHandler.Velocity.y < 0 && !plataform.canJump)
+            {
+                Glide();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
+        {
+            plataform.preset = normal;
         }
 
         plataform.input.x = Input.GetAxis("Horizontal");
