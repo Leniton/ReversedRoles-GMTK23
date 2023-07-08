@@ -913,7 +913,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.32
+  m_PixelsPerUnitMultiplier: 0.64
 --- !u!222 &1241940199
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.38622642, a: 1}
+  m_Color: {r: 0, g: 0.82920194, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -989,7 +989,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.215
+  m_PixelsPerUnitMultiplier: 0.43
 --- !u!222 &1385991241
 CanvasRenderer:
   m_ObjectHideFlags: 0
