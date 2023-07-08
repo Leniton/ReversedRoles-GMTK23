@@ -227,6 +227,9 @@ GameObject:
   m_Component:
   - component: {fileID: 398394607}
   - component: {fileID: 398394606}
+  - component: {fileID: 398394610}
+  - component: {fileID: 398394609}
+  - component: {fileID: 398394608}
   - component: {fileID: 398394605}
   - component: {fileID: 398394604}
   m_Layer: 6
@@ -365,6 +368,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398394608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398394603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396aa88f43bc2f94e8af6c6496313d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &398394609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398394603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83de305830a5acc4cadad18616370f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 1
+  state: 0
+  input: {x: 0, y: 0, z: 0}
+  hasControl: 1
+  onGround: 0
+  preset: {fileID: 11400000, guid: fbb97763f2f19fb49adf134ba15d9ab1, type: 2}
+--- !u!114 &398394610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398394603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84986c4f0974a9a488a0336c3a2e82a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plataform: {fileID: 398394609}
+  physicsHandler: {fileID: 398394608}
+  moving: 1
+  maxEdgeDistance: 1.5
 --- !u!1 &811993388
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,19 @@ using UnityEngine;
 public struct ColliderData
 {
     public GameObject gameObject;
-    public Bounds bounds;
+    private Bounds bounds;
+    public Bounds Bounds
+    {
+        get
+        {
+            bounds.center = gameObject.transform.position;
+            return bounds;
+        }
+        set
+        {
+            bounds = value;
+        }
+    }
 
     public ColliderData(Collider collider)
     {
