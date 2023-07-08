@@ -77,6 +77,18 @@ public class PhysicsHandler : MonoBehaviour
         return velocity;
     }
 
+    public void SetActive(bool value)
+    {
+        if (rb2D != null)
+        {
+            rb2D.simulated = value;
+        }
+        else if (rb3D != null)
+        {
+            rb3D.isKinematic = !value;
+        }
+    }
+
     #region Collision
 
     private void OnCollisionEnter(Collision collision)

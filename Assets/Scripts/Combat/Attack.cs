@@ -28,6 +28,7 @@ public class Attack : MonoBehaviour
         Vector2 ajustedSpeed = movingSpeed;
         ajustedSpeed.x *= Mathf.Sign(transform.lossyScale.x);
         ajustedSpeed.y *= Mathf.Sign(transform.lossyScale.y);
+        AttackObject.SetActive(!(movingSpeed == Vector2.zero));
         AttackObject.Velocity = ajustedSpeed;
         StartCoroutine(StopAttack());
     }
