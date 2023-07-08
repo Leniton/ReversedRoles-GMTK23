@@ -142,6 +142,9 @@ public class Plataform_Script : MonoBehaviour
             standingFloor = data.collider.gameObject;
             onGround = true;
             state = input.x == 0 ? State.idle : State.walking;
+            physicsHandler.Velocity = Vector3.zero;
+            finalVelocity = physicsHandler.Velocity;
+
             OnGrounded?.Invoke();
         }
     }
