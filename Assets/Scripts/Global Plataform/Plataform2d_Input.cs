@@ -9,6 +9,7 @@ public class Plataform2d_Input : MonoBehaviour
     [SerializeField] float cashedInputDuration;
     float currentTime;
     Vector3 cashedInput;
+    Vector3 baseScale;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public class Plataform2d_Input : MonoBehaviour
         plataform.OnGrounded += ChangePreset;
         normal.CalculateParameters();
         gliding.CalculateParameters();
+        baseScale = transform.localScale;
     }
 
     void Update()
@@ -36,7 +38,8 @@ public class Plataform2d_Input : MonoBehaviour
         if (currentTime >= cashedInputDuration)
         {
             currentTime = 0;
-            cashedInput = Vector3.zero;
+            //cashedInput = Vector3.zero;
+            cashedInput.y = 0;
         }
 
         if (plataform.physicsHandler.Velocity.y < 0 && cashedInput.y > 0)
@@ -45,6 +48,11 @@ public class Plataform2d_Input : MonoBehaviour
         }
 
         plataform.input.x = Input.GetAxis("Horizontal");
+        cashedInput.x = plataform.input.x == 0 ? cashedInput.x : plataform.input.x;
+
+        Vector3 finalScale = baseScale;
+        finalScale.x = baseScale.x * Mathf.Sign(cashedInput.x);
+        transform.localScale = finalScale;
     }
 
     void Glide()

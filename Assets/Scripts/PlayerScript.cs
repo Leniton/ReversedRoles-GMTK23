@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] HealthSystem healthSystem;
-    void Start()
+    [SerializeField] Attack golpe, tiro;
+
+    private void Awake()
     {
-        //playerHealth = healthSystem.health;
-        healthSystem.health.FullHeal();
-        healthSystem.health.Damage(1);
+        golpe.attacker = gameObject;
+        tiro.attacker = gameObject;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            golpe.StartAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            tiro.StartAttack();
+        }
     }
 }
