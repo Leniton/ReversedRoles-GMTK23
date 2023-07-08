@@ -28,6 +28,6 @@ public struct Health
 
     public Action onChange;
     public void Damage(int value) => health -= value;
-    public void Heal(int value) => health += value;
+    public void Heal(int value) => health += Mathf.Clamp(value, 0, MaxHealth - health);
     public void FullHeal() => health = MaxHealth;
 }
