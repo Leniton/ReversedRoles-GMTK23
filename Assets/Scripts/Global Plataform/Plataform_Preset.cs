@@ -31,7 +31,7 @@ public class Plataform_Preset : ScriptableObject
         //gravity calculations. jump and fall gravity are different
         jumpGravity = (jumpSpeed / (ticksPerSecond * timeToMaxHeight));
         fallGravity = (jumpSpeed / (ticksPerSecond * timeToFall));
-        terminalVelocity = fallGravity * (ticksPerSecond * timeToFall);
+        terminalVelocity = jumpSpeed * (ticksPerSecond * timeToFall);
 
         //print($"jump: {jumpSpeed}");
         //print($"gravity: {gravity}");
