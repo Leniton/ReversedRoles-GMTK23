@@ -26,7 +26,6 @@ public class PhysicsHandler : MonoBehaviour
 
     public Action<CollisionData> CollisionEnter, CollisionStay, CollisionExit;
     public Action<ColliderData> TriggerEnter, TriggerStay, TriggerExit;
-
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();

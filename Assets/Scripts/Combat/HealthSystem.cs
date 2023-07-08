@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="newHealth",menuName ="Health")]
 public class HealthSystem : ScriptableObject
 {
-    public Health reference;
+    public Health reference = new Health();
 }
 
 [Serializable]
@@ -27,7 +27,7 @@ public struct Health
     }
 
     public Action onChange;
-    public void Damage(int value) => Value -= value;
+    public void Damage(int value)=> Value -= value;
     public void Heal(int value) => Value += Mathf.Clamp(value, 0, MaxHealth - Value);
     public void FullHeal() => Value = MaxHealth;
 }

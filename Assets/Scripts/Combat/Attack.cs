@@ -5,14 +5,16 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public GameObject attacker;
-    [SerializeField] int damage;
+    [SerializeField] int damage = 1;
     [SerializeField] PhysicsHandler AttackObject;
     [SerializeField] Vector2 movingSpeed;
     [SerializeField] float duration = .4f;
+    [SerializeField] float coolDown = 0;
     [SerializeField] bool canMultiHit = false;
     [SerializeField,Tooltip("deixar nulo se o ataque não seguir nenhum transform")] Transform parentWhileAttacking;// deixar nulo se o ataque não seguir nenhum transform
     List<GameObject> hitTargets = new();
     Vector3 startingPosition;
+    bool canAttack = true;
 
     private void Awake()
     {
@@ -20,15 +22,20 @@ public class Attack : MonoBehaviour
         AttackObject.TriggerEnter += Hit;
     }
 
+    private void OnDisable()
+    {
+        AttackObject.TriggerEnter -= Hit;
+    }
+
     public void StartAttack()
     {
+        canAttack = false;
         AttackObject.transform.localPosition = startingPosition;
         AttackObject.transform.SetParent(parentWhileAttacking);
         AttackObject.gameObject.SetActive(true);
         Vector2 ajustedSpeed = movingSpeed;
         ajustedSpeed.x *= Mathf.Sign(transform.lossyScale.x);
         ajustedSpeed.y *= Mathf.Sign(transform.lossyScale.y);
-        AttackObject.SetActive(!(movingSpeed == Vector2.zero));
         AttackObject.Velocity = ajustedSpeed;
         StartCoroutine(StopAttack());
     }
@@ -41,7 +48,6 @@ public class Attack : MonoBehaviour
         {
             if (canMultiHit || (!canMultiHit && !hitTargets.Contains(collision.gameObject)))
             {
-                Debug.Log("hit");
                 if(!canMultiHit) hitTargets.Add(collision.gameObject);
                 health.DealDamage(damage);
             }
@@ -57,5 +63,8 @@ public class Attack : MonoBehaviour
         AttackObject.gameObject.SetActive(false);
         AttackObject.Velocity = Vector2.zero;
         hitTargets.Clear();
+
+        if (coolDown > 0) yield return new WaitForSeconds(coolDown);
+        canAttack = false;
     }
 }

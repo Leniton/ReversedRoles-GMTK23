@@ -7,8 +7,9 @@ public class HealthManager : MonoBehaviour
     [SerializeField] HealthSystem healthSystem;
     [SerializeField] bool instanced;
     [SerializeField] float invencibilityDuration = 0;
-    Health _health;
+    Health _health = new();
     public bool invincible{ get; private set; }
+    Coroutine isInvincible;
 
     public Health health => instanced ? _health : healthSystem.reference;
 
@@ -35,7 +36,6 @@ public class HealthManager : MonoBehaviour
     void OnHealthChange()
     {
         int currentValue = instanced ? _health.Value : healthSystem.reference.Value;
-
         if (currentValue <= 0)
         {
             Debug.Log($"Dead with {currentValue}");
@@ -45,7 +45,8 @@ public class HealthManager : MonoBehaviour
 
     public void InvincibleMode(float duration)
     {
-        StartCoroutine(Invincible(duration));
+        if (isInvincible == null)
+            isInvincible = StartCoroutine(Invincible(duration));
     }
 
     IEnumerator Invincible(float duration)
@@ -54,5 +55,6 @@ public class HealthManager : MonoBehaviour
         invincible = true;
         yield return new WaitForSeconds(duration);
         invincible = false;
+        isInvincible = null;
     }
 }
