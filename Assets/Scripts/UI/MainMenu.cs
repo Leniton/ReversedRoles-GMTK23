@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
 
+    [Header("Confirmation")]
     [SerializeField] private GameObject comfirmationPrompt = null;   
 
     public void StartGame()
