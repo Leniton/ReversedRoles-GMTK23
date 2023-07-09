@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(-3)]
 public class SceneControler: MonoBehaviour
 {
     public static SceneControler sceneControler;
