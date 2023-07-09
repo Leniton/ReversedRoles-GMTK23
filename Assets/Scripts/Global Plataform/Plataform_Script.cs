@@ -111,7 +111,18 @@ public class Plataform_Script : MonoBehaviour
         //print($"collided with {data.collider.gameObject.name}");
         if (data.collider.gameObject.CompareTag("Chão"))
         {
-            if(Vector3.Angle(data.contacts[0].normal, Vector3.up) <= maxSlopeAngle)
+            //Debug.Log($"Colliding normal: {data.contacts[0].normal}");
+            bool validSlope = false;
+            for (int i = 0; i < data.contacts.Length; i++)
+            {
+                if (Vector3.Angle(data.contacts[i].normal, Vector3.up) <= maxSlopeAngle)
+                {
+                    //Debug.Log($"valid at {i}");
+                    validSlope = true;
+                    break;
+                }
+            }
+            if(validSlope)
             {
                 standingFloor = data.collider.gameObject;
                 onGround = true;

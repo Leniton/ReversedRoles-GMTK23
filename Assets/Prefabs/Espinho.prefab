@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2215836361879486907}
   - component: {fileID: 2589181488144857027}
-  - component: {fileID: 4132703685694268277}
   - component: {fileID: 5373693927286562211}
+  - component: {fileID: 5217788031072443267}
   m_Layer: 0
   m_Name: Espinho
   m_TagString: Untagged
@@ -79,15 +79,29 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 22, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4132703685694268277
-PolygonCollider2D:
+--- !u!114 &5373693927286562211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452556217161930465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98a9f04d1d73b04f81440d0e457daf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+  damage: 1
+--- !u!61 &5217788031072443267
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,31 +137,11 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 22, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.010223389, y: 0.48327577}
-      - {x: -0.332757, y: -0.20862126}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.33944702, y: -0.20527637}
-      - {x: 0.010223389, y: 0.48662055}
-  m_UseDelaunayMesh: 0
---- !u!114 &5373693927286562211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452556217161930465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a98a9f04d1d73b04f81440d0e457daf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.2
-  damage: 1
+  serializedVersion: 2
+  m_Size: {x: 22, y: 1}
+  m_EdgeRadius: 0
