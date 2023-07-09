@@ -7,7 +7,7 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] HealthSystem healthSystem;
-    [SerializeField] bool instanced, disabledOnDeath = true;
+    [SerializeField] bool instanced;
     [SerializeField] float invencibilityDuration = 0;
     Health _health = new();
     public bool invincible{ get; private set; }
@@ -58,19 +58,14 @@ public class HealthManager : MonoBehaviour
         if (instanced) _health.HiddenSet(value);
         else healthSystem.reference.HiddenSet(value);
     }
-    public void FullHeal()
-    {
-        if (instanced) _health.FullHeal();
-        else healthSystem.reference.FullHeal();
-    }
 
     void OnHealthChange()
     {
         int currentValue = instanced ? _health.Value : healthSystem.reference.Value;
         if (currentValue <= 0)
         {
-            //Debug.Log($"Dead with {currentValue}");
-            if (disabledOnDeath) gameObject.SetActive(false);
+            Debug.Log($"Dead with {currentValue}");
+            gameObject.SetActive(false);
         }
     }
 

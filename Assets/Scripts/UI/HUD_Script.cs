@@ -24,13 +24,11 @@ public class HUD_Script : MonoBehaviour
 
     void UpdateHealth()
     {
-        int value = health.reference.Value;
-        hudHealth.sizeDelta = new Vector2(hpBaseSize.x * value, hpBaseSize.y);
+        hudHealth.sizeDelta = new Vector2(hpBaseSize.x * health.reference.Value, hpBaseSize.y);
     }
 
     void UpdatePoder()
     {
-        int value = poder.reference.Value;
-        hudPoder.sizeDelta = new Vector2(poderBaseSize.x * value, poderBaseSize.y);
+        hudPoder.sizeDelta = new Vector2(poderBaseSize.x * poder.reference.Value, poderBaseSize.y);
     }
 }

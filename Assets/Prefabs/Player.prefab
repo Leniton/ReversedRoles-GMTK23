@@ -107,7 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 11400000, guid: 65e969e8c12ee624c984c1a28104a6ce, type: 2}
   instanced: 0
-  disabledOnDeath: 0
   invencibilityDuration: 1.2
 --- !u!114 &3903415807846501384
 MonoBehaviour:
@@ -128,7 +127,6 @@ MonoBehaviour:
   plataform_Script: {fileID: 7529952562131388750}
   plataformInput: {fileID: 7983162611904295544}
   animator: {fileID: 6590643542647682828}
-  manager: {fileID: 0}
 --- !u!114 &7983162611904295544
 MonoBehaviour:
   m_ObjectHideFlags: 0
