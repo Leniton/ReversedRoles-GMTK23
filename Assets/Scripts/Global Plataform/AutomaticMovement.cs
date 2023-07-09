@@ -9,7 +9,7 @@ public class AutomaticMovement : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] bool moving = false;
     [SerializeField] float maxEdgeDistance = 1;
-    ColliderData plataformData;
+    ColliderData plataformData = new();
     Vector3 baseScale;
     int damageHash = Animator.StringToHash("Damaged");
 
