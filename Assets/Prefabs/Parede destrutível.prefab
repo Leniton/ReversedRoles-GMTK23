@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1313094009639144289}
   - component: {fileID: 6483140250749375275}
   - component: {fileID: 8955328548067724682}
+  - component: {fileID: 7631944983508694177}
+  - component: {fileID: 4650402557547799032}
   m_Layer: 0
   m_Name: "Parede destrut\xEDvel"
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1313094009639144289
 SpriteRenderer:
@@ -176,3 +178,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 6}
   m_EdgeRadius: 0
+--- !u!114 &7631944983508694177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943076299628330530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13302f38853253a428906145dbcf9679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSystem: {fileID: 11400000, guid: a392dac8173d666499d3bd466c1692f5, type: 2}
+  instanced: 1
+  invencibilityDuration: 0
+--- !u!114 &4650402557547799032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943076299628330530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1c60762efb4994294787710f4712b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager: {fileID: 7631944983508694177}
+  autoHeal: 2
